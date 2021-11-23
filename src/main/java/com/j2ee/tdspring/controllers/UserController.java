@@ -34,6 +34,7 @@ public class UserController {
       user.setFirstname(userReceive.getFirstname()); 
       user.setLastname(userReceive.getLastname()); 
       user.setTelephone(userReceive.getTelephone());
+      user.setRole(userReceive.getRole());
       if (StringUtils.isNotEmpty(user.getPassword())) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
       }
