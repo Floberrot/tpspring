@@ -1,17 +1,22 @@
 package com.j2ee.tdspring.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Patients")
+@Table(name="Projects")
 public class Projects {
 	@Id
     @Column(name="id")
@@ -43,21 +48,23 @@ public class Projects {
     
     @Column(name="number_patient", nullable=false)
     private int number_patient;
+        
+    @OneToMany(mappedBy = "project")
+    private List<Messages> messages;
     
-    @Column(name="messages", nullable=false)
-    private int messages;
-    
-    @Column(name="keywords", nullable=false)
-    private int keywords;
+    @OneToMany(mappedBy = "project")
+    private List<Keywords> keywords;
     
     @Column(name="query", nullable=false)
     private int query;
     
-    @Column(name="users", nullable=false)
-    private int users;
+    @ManyToMany
+    @JoinTable(name="participants",joinColumns=@JoinColumn(name = "project_id"),inverseJoinColumns=@JoinColumn(name = "users_id"))
+    private List<Users> participants;
     
-    @Column(name="followers", nullable=false)
-    private int followers;
+    @ManyToMany
+    @JoinTable(name="followers",joinColumns=@JoinColumn(name = "project_id"),inverseJoinColumns=@JoinColumn(name = "users_id"))
+    private List<Users> followers;
 
 	public Integer getId() {
 		return id;
@@ -123,19 +130,19 @@ public class Projects {
 		this.number_patient = number_patient;
 	}
 
-	public int getMessages() {
+	public List<Messages> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(int messages) {
+	public void setMessages(List<Messages> messages) {
 		this.messages = messages;
 	}
 
-	public int getKeywords() {
+	public List<Keywords> getKeywords() {
 		return keywords;
 	}
 
-	public void setKeywords(int keywords) {
+	public void setKeywords(List<Keywords> keywords) {
 		this.keywords = keywords;
 	}
 
@@ -147,19 +154,19 @@ public class Projects {
 		this.query = query;
 	}
 
-	public int getUsers() {
-		return users;
+	public List<Users> getParticipants() {
+		return participants;
 	}
 
-	public void setUsers(int users) {
-		this.users = users;
+	public void setParticipants(List<Users> participants) {
+		this.participants = participants;
 	}
 
-	public int getFollowers() {
+	public List<Users> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(int followers) {
+	public void setFollowers(List<Users> followers) {
 		this.followers = followers;
-	}
+	}	
 }

@@ -40,33 +40,13 @@ public class Users {
         @JsonIgnore
         private String password;
         
-        @ManyToMany(mappedBy="users")
+        @ManyToMany(mappedBy="followers")
         @JsonIgnore
-        private List<Exits> exits;
+        private List<Projects> project_follower;
         
-        public String getRole() {
-			return role;
-		}
-
-		public void setRole(String role) {
-			this.role = role;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}        
-
-        public List<Exits> getExits() {
-			return exits;
-		}
-
-		public void setExits(List<Exits> users) {
-			this.exits = users;
-		}
+        @ManyToMany(mappedBy="participants")
+        @JsonIgnore
+        private List<Projects> project_participants;
 
 		public String getUsername() {
 			return username;
@@ -100,4 +80,37 @@ public class Users {
 			this.telephone = telephone;
 		}
 
+		public String getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			this.role = role;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+		public List<Projects> getProject_follower() {
+			return project_follower;
+		}
+
+		public void setProject_follower(List<Projects> project_follower) {
+			this.project_follower = project_follower;
+		}
+
+		public List<Projects> getProject_participants() {
+			return project_participants;
+		}
+
+		public void setProject_participants(List<Projects> project_participants) {
+			this.project_participants = project_participants;
+		}
+        
+       
 }
