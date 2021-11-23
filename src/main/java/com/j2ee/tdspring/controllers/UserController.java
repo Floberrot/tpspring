@@ -26,8 +26,7 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
 	
 	@Operation(summary = "Créer un utilisateur") 
-    @Valid
-    @RequestMapping(path = "/add-test-user", method = RequestMethod.POST) 
+    @RequestMapping(path = "/user", method = RequestMethod.POST) 
      public void addUser(@RequestBody Users userReceive) { 
       Users user = new Users(); 
       user.setUsername(userReceive.getUsername()); 
@@ -35,9 +34,12 @@ public class UserController {
       user.setLastname(userReceive.getLastname()); 
       user.setTelephone(userReceive.getTelephone());
       user.setRole(userReceive.getRole());
+      user.setPassword("test");
+      /*
       if (StringUtils.isNotEmpty(user.getPassword())) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
       }
+      */
       userService.createOrUpdate(user); 
      }
 	
