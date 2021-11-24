@@ -3,16 +3,7 @@ package com.j2ee.tdspring.entities;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -22,14 +13,15 @@ public class Projects {
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-	
+
 	@Column(name="name", nullable=false)
     @NotNull
     private String name;
-	
-	@Column(name="author", nullable=false)
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name="username", nullable=false)
     @NotNull
-    private String author;
+    private Users author;
 
     @Column(name="description", nullable=false)
     @NotNull
@@ -55,9 +47,6 @@ public class Projects {
     @OneToMany(mappedBy = "project")
     private List<Keywords> keywords;
     
-    @Column(name="query", nullable=false)
-    private int query;
-    
     @ManyToMany
     @JoinTable(name="participants",joinColumns=@JoinColumn(name = "project_id"),inverseJoinColumns=@JoinColumn(name = "users_id"))
     private List<Users> participants;
@@ -65,6 +54,10 @@ public class Projects {
     @ManyToMany
     @JoinTable(name="followers",joinColumns=@JoinColumn(name = "project_id"),inverseJoinColumns=@JoinColumn(name = "users_id"))
     private List<Users> followers;
+
+	@ManyToMany
+    @JoinTable(name="requests",joinColumns=@JoinColumn(name = "project_id"),inverseJoinColumns=@JoinColumn(name = "users_id"))
+    private List<Users> requests;
 
 	public Integer getId() {
 		return id;
@@ -80,14 +73,6 @@ public class Projects {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	public String getDescription() {
@@ -146,14 +131,6 @@ public class Projects {
 		this.keywords = keywords;
 	}
 
-	public int getQuery() {
-		return query;
-	}
-
-	public void setQuery(int query) {
-		this.query = query;
-	}
-
 	public List<Users> getParticipants() {
 		return participants;
 	}
@@ -168,5 +145,21 @@ public class Projects {
 
 	public void setFollowers(List<Users> followers) {
 		this.followers = followers;
-	}	
+	}
+
+	public Users getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Users author) {
+		this.author = author;
+	}
+
+	public List<Users> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Users> requests) {
+		this.requests = requests;
+	}
 }

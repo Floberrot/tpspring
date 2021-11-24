@@ -34,12 +34,9 @@ public class UserController {
       user.setLastname(userReceive.getLastname()); 
       user.setTelephone(userReceive.getTelephone());
       user.setRole(userReceive.getRole());
-      user.setPassword("test");
-      /*
-      if (StringUtils.isNotEmpty(user.getPassword())) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+      if (StringUtils.isNotEmpty(userReceive.getPassword())) {
+		user.setPassword(passwordEncoder.encode(userReceive.getPassword()));
       }
-      */
       userService.createOrUpdate(user); 
      }
 	
@@ -70,7 +67,7 @@ public class UserController {
 	 
 	 @Operation(summary = "Mise à jour du mot de passe d'un utilisateur")
 	 @RequestMapping(path = "/user/updatePassword", method = RequestMethod.POST)
-	 public void setPassword(@RequestParam(value = "userName") String userName, @RequestParam(value = "old") String oldPassword, @RequestParam(value = "new") String newPassword) throws IllegalAccessException {
+	 public void setPassword(@RequestParam(value = "username") String userName, @RequestParam(value = "old") String oldPassword, @RequestParam(value = "new") String newPassword) throws IllegalAccessException {
 		 userService.setPassword(userName, oldPassword, newPassword);
 	 }
 }

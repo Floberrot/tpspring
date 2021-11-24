@@ -12,105 +12,114 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Users")
+@Table(name = "Users")
 public class Users {
 
-     	@Id
-        @Column(name="username")
-     	@NotNull
-        private String username;
+    @Id
+    @Column(name = "username")
+    @NotNull
+    private String username;
 
-        @Column(name="firstname", length=30, nullable=false)
-        @NotNull
-        private String firstname;
+    @Column(name = "firstname", nullable = false)
+    @NotNull
+    private String firstname;
 
-        @Column(name="lastname",length=30, nullable=false)
-        @NotNull
-        private String lastname;
-        
-        @Column(name="telephone",length=30, nullable=false)
-        private int telephone;
-        
-        @Column(name="role", length=30, nullable=false)
-        @NotNull
-        private String role;
-        
-        @Column(name="password", length=30, nullable=false)
-        @NotNull
-        @JsonIgnore
-        private String password;
-        
-        @ManyToMany(mappedBy="followers")
-        @JsonIgnore
-        private List<Projects> project_follower;
-        
-        @ManyToMany(mappedBy="participants")
-        @JsonIgnore
-        private List<Projects> project_participants;
+    @Column(name = "lastname", nullable = false)
+    @NotNull
+    private String lastname;
 
-		public String getUsername() {
-			return username;
-		}
+    @Column(name = "telephone", nullable = false)
+    private int telephone;
 
-		public void setUsername(String username) {
-			this.username = username;
-		}
+    @Column(name = "role", nullable = false)
+    @NotNull
+    private String role;
 
-		public String getFirstname() {
-			return firstname;
-		}
+    @Column(name = "password", nullable = false)
+    @NotNull
+    private String password;
 
-		public void setFirstname(String firstname) {
-			this.firstname = firstname;
-		}
+    @ManyToMany(mappedBy = "followers")
+    @JsonIgnore
+    private List<Projects> project_follower;
 
-		public String getLastname() {
-			return lastname;
-		}
+    @ManyToMany(mappedBy = "participants")
+    @JsonIgnore
+    private List<Projects> project_participants;
 
-		public void setLastname(String lastname) {
-			this.lastname = lastname;
-		}
+    @ManyToMany(mappedBy = "requests")
+    @JsonIgnore
+    private List<Projects> user_requests;
 
-		public int getTelephone() {
-			return telephone;
-		}
+    public String getUsername() {
+        return username;
+    }
 
-		public void setTelephone(int telephone) {
-			this.telephone = telephone;
-		}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-		public String getRole() {
-			return role;
-		}
+    public String getFirstname() {
+        return firstname;
+    }
 
-		public void setRole(String role) {
-			this.role = role;
-		}
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-		public String getPassword() {
-			return password;
-		}
+    public String getLastname() {
+        return lastname;
+    }
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-		public List<Projects> getProject_follower() {
-			return project_follower;
-		}
+    public int getTelephone() {
+        return telephone;
+    }
 
-		public void setProject_follower(List<Projects> project_follower) {
-			this.project_follower = project_follower;
-		}
+    public void setTelephone(int telephone) {
+        this.telephone = telephone;
+    }
 
-		public List<Projects> getProject_participants() {
-			return project_participants;
-		}
+    public String getRole() {
+        return role;
+    }
 
-		public void setProject_participants(List<Projects> project_participants) {
-			this.project_participants = project_participants;
-		}
-        
-       
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Projects> getProject_follower() {
+        return project_follower;
+    }
+
+    public void setProject_follower(List<Projects> project_follower) {
+        this.project_follower = project_follower;
+    }
+
+    public List<Projects> getProject_participants() {
+        return project_participants;
+    }
+
+    public void setProject_participants(List<Projects> project_participants) {
+        this.project_participants = project_participants;
+    }
+
+    public List<Projects> getUser_requests() {
+        return user_requests;
+    }
+
+    public void setUser_requests(List<Projects> user_requests) {
+        this.user_requests = user_requests;
+    }
 }

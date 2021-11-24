@@ -18,7 +18,7 @@ import com.j2ee.tdspring.services.PatientService;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController 
-public class PartientController {
+public class PatientController {
 	@Autowired 
 	 private PatientService patientService;
 	
