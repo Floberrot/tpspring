@@ -23,27 +23,26 @@ public class ProjectController {
     @Valid
     @RequestMapping(path = "/project", method = RequestMethod.POST)
     public void addProject(
-            @RequestBody String author,
-            @RequestBody String description,
-            @RequestBody String name,
-            @RequestBody int number_patients,
-            @RequestBody int wishing_patients,
-            @RequestBody Date created_at,
-            @RequestBody List<String> followers,
-            @RequestBody List<String> participants,
-            @RequestBody List<Keywords> keywords,
-            @RequestBody List<Messages> messages
+            @RequestParam("followers") List<String> followers,
+            @RequestParam("description") String description,
+            @RequestParam("author") String author,
+            @RequestParam("name") String name,
+            @RequestParam("number_patients") int number_patients,
+            @RequestParam("wishing_patients") int wishing_patients,
+            @RequestParam("keywords") List<Keywords> keywords,
+            @RequestParam("closed_at") List<Messages> messages,
+            @RequestParam("participants") List<String> participants
     ) {
         Projects projects = new Projects();
-        projects.setCreated_at(created_at);
         projects.setAuthor(userService.getUserById(author));
         projects.setDescription(description);
         projects.setName(name);
         projects.setNumber_patient(number_patients);
         projects.setWishing_patient(wishing_patients);
+        projects.setCreated_at(new Date());
+        projects.setClosed_at(new Date());
         projects.setFollowers(projectService.getFollowers(followers));
         projects.setParticipants(projectService.getParticipants(participants));
-//        projects.setRequests(requests);
         projects.setKeywords(keywords);
         projects.setMessages(messages);
         projectService.createOrUpdate(projects);

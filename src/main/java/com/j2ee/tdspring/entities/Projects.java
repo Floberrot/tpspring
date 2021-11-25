@@ -32,7 +32,6 @@ public class Projects {
     private Date created_at;
     
     @Column(name="closed_at", nullable=false)
-    @NotNull
     private Date closed_at;
     
     @Column(name="wishing_patient", nullable=false)
