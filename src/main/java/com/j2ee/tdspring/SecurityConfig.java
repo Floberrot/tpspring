@@ -28,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-        	.antMatchers("/user").permitAll()
-//	        .antMatchers("/api", "/swagger-ui/**", "/api/**").hasRole("ADMIN")
+        	.antMatchers("/**").permitAll()
+	        .antMatchers("/api", "/swagger-ui/**", "/api/**").permitAll()
 	        .anyRequest().authenticated()
 	        .and().httpBasic()
 			.and().csrf().disable();

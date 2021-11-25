@@ -22,6 +22,10 @@ public class Messages {
     @NotNull
     private String message;
 
+    @Column(name="likes", nullable=false)
+    @NotNull
+    private int likes;
+
 	@ManyToOne
 	@JoinColumn(name="project_id", nullable=false)
 	private Projects project;
