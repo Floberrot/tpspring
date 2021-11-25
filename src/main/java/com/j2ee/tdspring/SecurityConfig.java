@@ -25,13 +25,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
 	}
 	
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//        	.antMatchers("/user").permitAll()
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+        	.antMatchers("/user").permitAll()
 //	        .antMatchers("/api", "/swagger-ui/**", "/api/**").hasRole("ADMIN")
-//	        .anyRequest().authenticated()
-//	        .and().httpBasic()
-//			.and().csrf().disable();
-//	}
+	        .anyRequest().authenticated()
+	        .and().httpBasic()
+			.and().csrf().disable();
+	}
 }
